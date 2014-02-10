@@ -86,7 +86,7 @@ skydom.update(sunAngle)
 
 ## Handle sunAngle
 
-As sunAngle is asked everywhere, here is a simple way to handle it
+As sunAngle is asked everywhere, here is a simple way to handle it.
 
 ```
 // begining position
