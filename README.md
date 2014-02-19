@@ -26,11 +26,12 @@ bower install threex.daynight
 
 # How To Use It
 
-The day-night cycle is composed of 3 parts:
+The day-night cycle is composed of 4 parts:
 
 * the sun sphere: the physical sphere representing the sun
 * the sun light: the light projected from the sun
 * the sky dom: the sky dom aka what you see above your head during sunny days.
+* the star field: the stars field displayed during the night
 
 Each of them may be updated according to current ```sunAngle```
 
@@ -83,6 +84,25 @@ Everytime you want to update it, pass it the current ```sunAngle```
 ```
 skydom.update(sunAngle)
 ```
+
+## THREEx.DayNight.StarField
+
+It handles the stars during the night
+First you create it and add it to your scene.
+
+```
+var starField	= new THREEx.DayNight.StarField()
+scene.add( starField.object3d )
+```
+
+Everytime you want to update it, pass it the current ```sunAngle```
+
+```
+starField.update(sunAngle)
+```
+
+
+
 
 ## Handle sunAngle
 

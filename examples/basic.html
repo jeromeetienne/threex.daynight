@@ -9,16 +9,27 @@
 	var onRenderFcts= [];
 	var scene	= new THREE.Scene();
 	var camera	= new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.5, 3000000);
-	camera.position.z = 500;
+	camera.position.z = 3;
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		comment								//
 	//////////////////////////////////////////////////////////////////////////////////
 
 	var sunAngle = -1/6*Math.PI*2;
+	var sunAngle = 0/6*Math.PI*2;
 	onRenderFcts.push(function(delta, now){
-		var dayDuration	= 10
+		var dayDuration	= 10	// nb seconds for a full day cycle
 		sunAngle	+= delta/dayDuration * Math.PI*2
+	})
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//		starfield							//
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	var starField	= new THREEx.DayNight.StarField()
+	scene.add(starField.object3d)
+	onRenderFcts.push(function(delta, now){
+		starField.update(sunAngle)
 	})
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +67,7 @@
 	//		comment								//
 	//////////////////////////////////////////////////////////////////////////////////
 	
-	var geometry	= new THREE.TorusKnotGeometry()
+	var geometry	= new THREE.TorusKnotGeometry(0.5-0.15, 0.15)
 	var material	= new THREE.MeshPhongMaterial({
 		shading	: THREE.SmoothShading,
 	});

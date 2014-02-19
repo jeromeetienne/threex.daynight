@@ -2,6 +2,8 @@ var THREEx	= THREEx	|| {}
 
 THREEx.DayNight	= {}
 
+THREEx.DayNight.baseURL	= '../'
+
 THREEx.DayNight.currentPhase	= function(sunAngle){
 	if( Math.sin(sunAngle) > Math.sin(0) ){
 		return 'day'
@@ -9,6 +11,37 @@ THREEx.DayNight.currentPhase	= function(sunAngle){
 		return 'twilight'
 	}else{
 		return 'night'
+	}
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////
+//		starfield								//
+//////////////////////////////////////////////////////////////////////////////////
+
+THREEx.DayNight.StarField	= function(){
+	// create the mesh
+	var texture	= THREE.ImageUtils.loadTexture(THREEx.DayNight.baseURL+'images/galaxy_starfield.png')
+	var material	= new THREE.MeshBasicMaterial({
+		map	: texture,
+		side	: THREE.BackSide,
+ 		color	: 0x808080,
+	})
+	var geometry	= new THREE.SphereGeometry(100, 32, 32)
+	var mesh	= new THREE.Mesh(geometry, material)
+	this.object3d	= mesh
+
+	this.update	= function(sunAngle){
+		var phase	= THREEx.DayNight.currentPhase(sunAngle)
+		if( phase === 'day' ){
+			mesh.visible	= false
+		}else if( phase === 'twilight' ){
+			mesh.visible	= false
+		} else {
+			mesh.visible	= true
+	        	var intensity	= Math.abs(Math.sin(sunAngle))
+	        	material.color.setRGB(intensity, intensity, intensity)
+		}
 	}
 }
 
