@@ -39,6 +39,7 @@ THREEx.DayNight.StarField	= function(){
 			mesh.visible	= false
 		} else {
 			mesh.visible	= true
+			mesh.rotation.y	= sunAngle / 5
 	        	var intensity	= Math.abs(Math.sin(sunAngle))
 	        	material.color.setRGB(intensity, intensity, intensity)
 		}
