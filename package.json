@@ -1,0 +1,11 @@
+{
+  "name": "threex.daynight",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jeromeetienne/threex.daynight.git",
+  "author": "YourNameGoesHere",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.113.2"
+  }
+}
